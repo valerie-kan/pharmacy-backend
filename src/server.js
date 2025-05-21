@@ -1,47 +1,28 @@
 import express from 'express';
 import cors from 'cors';
-import pino from 'pino-http';
 
 import { getEnvVar } from './utils/getEnvVar.js';
 
-import { getProducts } from './services/products.js';
+// import { logger } from './middlewares/logger.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+
+import productsRouter from './routers/products.js';
 
 export const startServer = () => {
   const app = express();
 
   app.use(express.json());
   app.use(cors());
+  // app.use(logger);
 
-  app.use(
-    pino({
-      transport: {
-        target: 'pino-pretty',
-      },
-    }),
-  );
+  app.use('/products', productsRouter);
 
-  app.use('/products', async (req, res) => {
-    const data = await getProducts();
+  app.use(notFoundHandler);
 
-    res.json({
-      status: 200,
-      message: 'Successfully found products',
-      data,
-    });
-  });
+  app.use(errorHandler);
 
-  app.use((req, res) => {
-    res.json(404).json({
-      message: `${req.url} not found`,
-    });
-  });
+  const port = Number(getEnvVar('PORT', 3000));
 
-  app.use((err, req, res, next) => {
-    res.status(500).json({
-      message: 'Server error',
-      error: err.message,
-    });
-  });
-
-  app.listen(Number(getEnvVar('PORT', 3000)));
+  app.listen(port, () => console.log(`Server running on ${port} port`));
 };
