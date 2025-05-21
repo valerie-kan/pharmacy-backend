@@ -8,6 +8,8 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 import productsRouter from './routers/products.js';
+import reviewsRouter from './routers/reviews.js';
+import storesRouter from './routers/stores.js';
 
 export const startServer = () => {
   const app = express();
@@ -17,6 +19,8 @@ export const startServer = () => {
   // app.use(logger);
 
   app.use('/products', productsRouter);
+  app.use('/customer-reviews', reviewsRouter);
+  app.use('/stores', storesRouter);
 
   app.use(notFoundHandler);
 

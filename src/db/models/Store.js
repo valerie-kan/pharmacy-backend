@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 import { PHONE_REGEX } from '../../constants/user.js';
 
-const shopSchema = new Schema({
+const storeSchema = new Schema({
   name: {
     type: String,
     required: true,
@@ -26,6 +26,6 @@ const shopSchema = new Schema({
   },
 });
 
-const ShopCollection = model('shop', shopSchema);
+const StoreCollection = model('store', storeSchema, 'pharmacies');
 
-export default ShopCollection;
+export default StoreCollection;
