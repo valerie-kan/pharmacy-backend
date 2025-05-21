@@ -3,6 +3,8 @@ import createError from 'http-errors';
 import { getProducts } from '../services/products.js';
 import { getProductById } from '../services/products.js';
 
+import { getProductByIdSchema } from '../validation/products.js';
+
 export const getProductsController = async (req, res) => {
   const data = await getProducts();
 
@@ -14,6 +16,12 @@ export const getProductsController = async (req, res) => {
 };
 
 export const getProductByIdController = async (req, res) => {
+  try {
+    await getProductByIdSchema.validateAsync(req.params);
+  } catch (error) {
+    throw createError(400, error.message);
+  }
+
   const { id } = req.params;
 
   const data = await getProductById(id);
