@@ -18,7 +18,10 @@ export const registerController = async (req, res) => {
   res.status(201).json({
     status: 201,
     message: 'Successfully registered',
-    data,
+    data: {
+      user: data.user,
+      accessToken: data.accessToken,
+    },
   });
 };
 
@@ -31,6 +34,7 @@ export const loginController = async (req, res) => {
     status: 200,
     message: 'Successfully logged in a user',
     data: {
+      user: session.user,
       accessToken: session.accessToken,
     },
   });

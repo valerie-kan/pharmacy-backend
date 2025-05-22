@@ -17,6 +17,12 @@ const createSessionData = () => ({
   refreshTokenValidUntil: Date.now() + refreshTokenLifeTime,
 });
 
+const createUserData = (user) => ({
+  username: user.username,
+  phone: user.phone,
+  email: user.email,
+});
+
 export const register = async (payload) => {
   const { email, password } = payload;
   const user = await UserCollection.findOne({ email });
@@ -31,7 +37,16 @@ export const register = async (payload) => {
     password: hashPwd,
   });
 
-  return newUser;
+  const sessionData = createSessionData();
+  await SessionCollection.create({
+    userId: newUser._id,
+    ...sessionData,
+  });
+
+  return {
+    user: createUserData(newUser),
+    accessToken: sessionData.accessToken,
+  };
 };
 
 export const login = async (payload) => {
@@ -51,10 +66,18 @@ export const login = async (payload) => {
 
   const sessionData = createSessionData();
 
-  return SessionCollection.create({
+  const session = await SessionCollection.create({
     userId: user._id,
     ...sessionData,
   });
+
+  return {
+    user: createUserData(user),
+    accessToken: sessionData.accessToken,
+    refreshToken: sessionData.refreshToken,
+    id: session._id, // Додаємо ID сесії
+    refreshTokenValidUntil: session.refreshTokenValidUntil,
+  };
 };
 
 export const refresh = async ({ refreshToken, sessionId }) => {
