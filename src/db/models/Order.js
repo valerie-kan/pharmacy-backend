@@ -26,10 +26,6 @@ const orderSchema = new Schema(
     status: {
       type: String,
     },
-    order_date: {
-      type: Date,
-      required: true,
-    },
   },
   { versionKey: false, timestamps: true },
 );

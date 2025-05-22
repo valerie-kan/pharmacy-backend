@@ -6,9 +6,13 @@ import {
 } from '../controllers/cart.js';
 import { placeOrderController } from '../controllers/orders.js';
 
+import { authenticate } from '../middlewares/authenticate.js';
+
 import { ctrlWrapper } from '../utils/ctrlWrapper.js';
 
 const cartRouter = Router();
+
+cartRouter.use(authenticate);
 
 cartRouter.get('/', ctrlWrapper(getCartController));
 
