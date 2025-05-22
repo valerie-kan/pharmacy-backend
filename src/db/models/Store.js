@@ -1,6 +1,6 @@
 import { Schema, model } from 'mongoose';
 
-import { PHONE_REGEX } from '../../constants/user.js';
+import { phoneRegexp } from '../../constants/user.js';
 
 const storeSchema = new Schema({
   name: {
@@ -17,7 +17,7 @@ const storeSchema = new Schema({
   },
   phone: {
     type: String,
-    match: PHONE_REGEX,
+    match: phoneRegexp,
     required: true,
   },
   rating: {

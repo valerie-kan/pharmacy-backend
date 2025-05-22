@@ -1,29 +1,36 @@
 import { Schema, model } from 'mongoose';
 
-import { EMAIL_REGEX } from '../../constants/user.js';
-import { PHONE_REGEX } from '../../constants/user.js';
+import { emailRegexp } from '../../constants/user.js';
+import { phoneRegexp } from '../../constants/user.js';
 
-const userSchema = new Schema({
-  name: {
-    type: String,
-    required: true,
+import { handleSaveError } from './hooks.js';
+
+const userSchema = new Schema(
+  {
+    username: {
+      type: String,
+      required: true,
+    },
+    phone: {
+      type: String,
+      match: phoneRegexp,
+      required: true,
+    },
+    email: {
+      type: String,
+      match: emailRegexp,
+      required: true,
+      unique: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
   },
-  phone: {
-    type: String,
-    match: PHONE_REGEX,
-    required: true,
-  },
-  email: {
-    type: String,
-    match: EMAIL_REGEX,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-  },
-});
+  { versionKey: false, timestamps: true },
+);
+
+userSchema.post('save', handleSaveError);
 
 const UserCollection = model('user', userSchema);
 

@@ -7,6 +7,7 @@ import { getEnvVar } from './utils/getEnvVar.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
+import authRouter from './routers/auth.js';
 import productsRouter from './routers/products.js';
 import reviewsRouter from './routers/reviews.js';
 import storesRouter from './routers/stores.js';
@@ -19,6 +20,7 @@ export const startServer = () => {
   app.use(cors());
   // app.use(logger);
 
+  app.use('/user', authRouter);
   app.use('/products', productsRouter);
   app.use('/customer-reviews', reviewsRouter);
   app.use('/stores', storesRouter);
