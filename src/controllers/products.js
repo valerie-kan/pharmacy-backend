@@ -4,10 +4,12 @@ import { getProducts } from '../services/products.js';
 import { getProductById } from '../services/products.js';
 
 import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+import { parseProductFilterParams } from '../utils/filters/parseProductFilterParams.js';
 
 export const getProductsController = async (req, res) => {
   const { page, perPage } = parsePaginationParams(req.query);
-  const data = await getProducts({ page, perPage });
+  const filter = await parseProductFilterParams(req.query);
+  const data = await getProducts({ page, perPage, filter });
 
   res.json({
     status: 200,
