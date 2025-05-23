@@ -3,8 +3,11 @@ import createError from 'http-errors';
 import { getProducts } from '../services/products.js';
 import { getProductById } from '../services/products.js';
 
+import { parsePaginationParams } from '../utils/parsePaginationParams.js';
+
 export const getProductsController = async (req, res) => {
-  const data = await getProducts();
+  const { page, perPage } = parsePaginationParams(req.query);
+  const data = await getProducts({ page, perPage });
 
   res.json({
     status: 200,
