@@ -1,9 +1,6 @@
 import { Router } from 'express';
 
-import {
-  getCartController,
-  //   upsertCartController,
-} from '../controllers/cart.js';
+import * as controllers from '../controllers/cart.js';
 import { placeOrderController } from '../controllers/orders.js';
 
 import { authenticate } from '../middlewares/authenticate.js';
@@ -14,9 +11,19 @@ const cartRouter = Router();
 
 cartRouter.use(authenticate);
 
-cartRouter.get('/', ctrlWrapper(getCartController));
+cartRouter.get('/', ctrlWrapper(controllers.getCartController));
 
-// cartRouter.put('/update/:id', ctrlWrapper(upsertCartController));
+cartRouter.post('/', ctrlWrapper(controllers.addCartController));
+
+cartRouter.put(
+  '/update/:cartId/:itemId',
+  ctrlWrapper(controllers.updateCartController),
+);
+
+cartRouter.delete(
+  '/:cartId/:itemId',
+  ctrlWrapper(controllers.deleteItemController),
+);
 
 cartRouter.post('/checkout', ctrlWrapper(placeOrderController));
 

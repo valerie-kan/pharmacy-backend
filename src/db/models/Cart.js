@@ -27,6 +27,8 @@ const cartSchema = new Schema(
   { versionKey: false, timestamps: true },
 );
 
+cartSchema.post('save', handleSaveError);
+
 cartSchema.pre('findOneAndUpdate', setUpdateSettings);
 
 cartSchema.post('findOneAndUpdate', handleSaveError);
