@@ -23,25 +23,25 @@ export const addCartController = async (req, res) => {
 };
 
 export const updateCartController = async (req, res) => {
-  const { cartId, itemId } = req.params;
-  const data = await updateCart(cartId, itemId, req.body);
+  const { cartId, id } = req.params;
+  const data = await updateCart(cartId, id, req.body);
 
   if (!data) {
-    throw createError(404, `Product with id=${itemId} not found`);
+    throw createError(404, `Product with id=${id} not found`);
   }
 
   res.json({
     status: 200,
-    data,
+    message: 'Successfully updated',
   });
 };
 
 export const deleteItemController = async (req, res) => {
-  const { cartId, itemId } = req.params;
-  const data = await deleteItem(cartId, itemId);
+  const { cartId, id } = req.params;
+  const data = await deleteItem(cartId, id);
 
   if (!data) {
-    throw createError(404, `Product with id=${itemId} not found`);
+    throw createError(404, `Product with id=${id} not found`);
   }
 
   res.status(204).send();

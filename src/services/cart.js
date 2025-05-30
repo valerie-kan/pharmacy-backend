@@ -4,14 +4,14 @@ export const getCart = (userId) => CartCollection.findOne({ userId });
 
 export const addCart = (payload) => CartCollection.create(payload);
 
-export const updateCart = (cartId, itemId, payload) =>
+export const updateCart = (cartId, id, payload) =>
   CartCollection.findOneAndUpdate(
-    { _id: cartId, 'items._id': itemId },
+    { _id: cartId, 'items._id': id },
     { $set: { 'items.$.quantity': payload.quantity } },
   );
 
-export const deleteItem = (cartId, itemId) =>
+export const deleteItem = (cartId, id) =>
   CartCollection.findOneAndUpdate(
     { _id: cartId },
-    { $pull: { items: { _id: itemId } } },
+    { $pull: { items: { _id: id } } },
   );

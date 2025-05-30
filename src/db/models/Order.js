@@ -25,9 +25,14 @@ const orderSchema = new Schema(
     },
     status: {
       type: String,
+      required: true,
+    },
+    order_date: {
+      type: String,
+      required: true,
     },
   },
-  { versionKey: false, timestamps: true },
+  { versionKey: false },
 );
 
 orderSchema.post('save', handleSaveError);
