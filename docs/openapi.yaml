@@ -45,6 +45,12 @@ paths:
   /customer-reviews:
     get:
       $ref: ../swagger/paths/reviews/get.yaml
+  /stores:
+    get:
+      $ref: ../swagger/paths/stores/get.yaml
+  /stores/nearest:
+    get:
+      $ref: ../swagger/paths/stores/getNearest.yaml
 components:
   securitySchemes:
     bearerAuth:

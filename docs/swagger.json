@@ -575,6 +575,116 @@
           }
         }
       }
+    },
+    "/stores": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "summary": "Get list of stores",
+        "operationId": "getStores",
+        "description": "Get list of stores",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found pharmacies!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found pharmacies"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/stores"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
+    },
+    "/stores/nearest": {
+      "get": {
+        "tags": [
+          "Stores"
+        ],
+        "summary": "Get list of nearest stores",
+        "operationId": "getNearestStores",
+        "description": "Get list of nearest stores",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found pharmacies!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found pharmacies"
+                    },
+                    "data": {
+                      "type": "object",
+                      "$ref": "#/components/schemas/stores"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
     }
   },
   "components": {
@@ -710,6 +820,43 @@
             "description": "Product's category",
             "type": "string",
             "example": "Hand"
+          }
+        }
+      },
+      "stores": {
+        "type": "object",
+        "required": [
+          "_id",
+          "name",
+          "address",
+          "city",
+          "phone",
+          "rating"
+        ],
+        "properties": {
+          "_id": {
+            "type": "string",
+            "example": "682c7ca46538af33c9132598"
+          },
+          "name": {
+            "type": "string",
+            "example": "Pharmakor"
+          },
+          "address": {
+            "type": "string",
+            "example": "Hoholia St, 24"
+          },
+          "city": {
+            "type": "string",
+            "example": "Charkiv"
+          },
+          "phone": {
+            "type": "string",
+            "example": "0572-58-22-12"
+          },
+          "rating": {
+            "type": "number",
+            "example": 3
           }
         }
       }

@@ -5,7 +5,7 @@ export const getStoresController = async (req, res) => {
 
   res.json({
     status: 200,
-    message: 'Successfuly found pharmacies',
+    message: 'Successfully found pharmacies',
     data,
   });
 };

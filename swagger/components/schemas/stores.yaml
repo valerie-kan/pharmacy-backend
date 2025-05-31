@@ -1,0 +1,27 @@
+type: object
+required:
+  - _id
+  - name
+  - address
+  - city
+  - phone
+  - rating
+properties:
+  _id:
+    type: string
+    example: 682c7ca46538af33c9132598
+  name:
+    type: string
+    example: 'Pharmakor'
+  address:
+    type: string
+    example: 'Hoholia St, 24'
+  city:
+    type: string
+    example: 'Charkiv'
+  phone:
+    type: string
+    example: '0572-58-22-12'
+  rating:
+    type: number
+    example: 3

@@ -1,0 +1,34 @@
+tags:
+  - Stores
+summary: Get list of stores
+operationId: getStores
+description: 'Get list of stores'
+security:
+  - bearerAuth: []
+responses:
+  '200':
+    description: Successfully found pharmacies!
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 200
+            message:
+              type: string
+              example: Successfully found pharmacies
+            data:
+              type: object
+              $ref: ../../components/schemas/stores.yaml
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'
