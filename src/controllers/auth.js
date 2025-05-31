@@ -51,11 +51,11 @@ export const refreshController = async (req, res) => {
 };
 
 export const getUserInfoController = (req, res) => {
-  const { name, email } = req.user;
+  const { username, email } = req.user;
 
   res.json({
     status: 200,
-    data: { name, email },
+    data: { username, email },
   });
 };
 

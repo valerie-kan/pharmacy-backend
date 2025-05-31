@@ -1,0 +1,27 @@
+type: object
+required:
+  - username
+  - phone
+  - email
+  - password
+properties:
+  username:
+    description: 'User name'
+    type: string
+    example: 'John Dou'
+  phone:
+    description: 'User phone'
+    type: string
+    example: '+387091456783'
+    pattern: '/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/'
+  email:
+    description: 'User email'
+    type: string
+    format: email
+    example: david@gmail.com
+    pattern: '/^\w+([._]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/'
+  password:
+    description: 'User password'
+    type: string
+    format: password
+    example: '1234567q'

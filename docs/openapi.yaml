@@ -21,6 +21,21 @@ servers:
   - url: http://localhost:3000
   - url: https://pharmacy-backend-theta.vercel.app
 paths:
+  /user/register:
+    post:
+      $ref: ../swagger/paths/user/register.yaml
+  /user/login:
+    post:
+      $ref: ../swagger/paths/user/login.yaml
+  /user/refresh:
+    post:
+      $ref: ../swagger/paths/user/refresh.yaml
+  /user/logout:
+    post:
+      $ref: '../swagger/paths/user/logout.yaml'
+  /user/user-info:
+    get:
+      $ref: '../swagger/paths/user/getUser.yaml'
   /products:
     get:
       $ref: ../swagger/paths/products/get.yaml

@@ -23,7 +23,11 @@ authRouter.post(
   ctrlWrapper(authControllers.loginController),
 );
 
-authRouter.post('/refresh', ctrlWrapper(authControllers.refreshController));
+authRouter.post(
+  '/refresh',
+  authenticate,
+  ctrlWrapper(authControllers.refreshController),
+);
 
 authRouter.get(
   '/user-info',
@@ -31,6 +35,10 @@ authRouter.get(
   ctrlWrapper(authControllers.getUserInfoController),
 );
 
-authRouter.post('/logout', ctrlWrapper(authControllers.logoutController));
+authRouter.post(
+  '/logout',
+  authenticate,
+  ctrlWrapper(authControllers.logoutController),
+);
 
 export default authRouter;
