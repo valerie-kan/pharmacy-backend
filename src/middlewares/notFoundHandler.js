@@ -1,9 +1,6 @@
-export const notFoundHandler = (req, res, next) => {
-  if (res.headersSent) {
-    return next(); // нічого не робимо, якщо вже щось відправлено
-  }
-
+export const notFoundHandler = (req, res) => {
   res.json(404).json({
+    status: 404,
     message: `${req.url} not found`,
   });
 };
