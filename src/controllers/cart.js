@@ -13,7 +13,8 @@ export const getCartController = async (req, res) => {
 };
 
 export const addCartController = async (req, res) => {
-  const data = await addCart(req.body);
+  const { _id: userId } = req.user;
+  const data = await addCart({ ...req.body, userId });
 
   res.status(201).json({
     status: 201,
@@ -23,11 +24,12 @@ export const addCartController = async (req, res) => {
 };
 
 export const updateCartController = async (req, res) => {
-  const { cartId, id } = req.params;
-  const data = await updateCart(cartId, id, req.body);
+  const { cartId, id: _id } = req.params;
+  const { _id: userId } = req.user;
+  const data = await updateCart({ cartId, _id, userId }, req.body);
 
   if (!data) {
-    throw createError(404, `Product with id=${id} not found`);
+    throw createError(404, `Product with id=${_id} not found`);
   }
 
   res.json({
@@ -37,11 +39,12 @@ export const updateCartController = async (req, res) => {
 };
 
 export const deleteItemController = async (req, res) => {
-  const { cartId, id } = req.params;
-  const data = await deleteItem(cartId, id);
+  const { cartId, id: _id } = req.params;
+  const { _id: userId } = req.user;
+  const data = await deleteItem({ cartId, _id, userId });
 
   if (!data) {
-    throw createError(404, `Product with id=${id} not found`);
+    throw createError(404, `Product with id=${_id} not found`);
   }
 
   res.status(204).send();

@@ -3,12 +3,12 @@ import createError from 'http-errors';
 import { getSession, getUser } from '../services/auth.js';
 
 export const authenticate = async (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization) {
+  const authHeader = req.get('Authorization');
+  if (!authHeader) {
     return next(createError(401, 'Authorization header not found'));
   }
 
-  const [bearer, accessToken] = authorization.split(' ');
+  const [bearer, accessToken] = authHeader.split(' ');
   if (bearer !== 'Bearer') {
     return next(createError(401, 'Header must be Bearer type'));
   }

@@ -8,7 +8,6 @@ const addItemSchema = Joi.object({
 });
 
 export const cartAddSchema = Joi.object({
-  userId: Joi.string().required(),
   items: Joi.array().items(addItemSchema).required(),
 });
 
