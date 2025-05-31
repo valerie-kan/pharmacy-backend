@@ -42,6 +42,9 @@ paths:
   /products/{id}:
     get:
       $ref: ../swagger/paths/products/{id}/get.yaml
+  /customer-reviews:
+    get:
+      $ref: ../swagger/paths/reviews/get.yaml
 components:
   securitySchemes:
     bearerAuth:

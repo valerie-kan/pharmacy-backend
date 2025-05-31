@@ -5,7 +5,7 @@ export const getReviewsController = async (req, res) => {
 
   res.json({
     status: 200,
-    message: 'Successfuly found reviews',
+    message: 'Successfully found reviews',
     data,
   });
 };

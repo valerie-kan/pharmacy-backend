@@ -502,6 +502,79 @@
           }
         }
       }
+    },
+    "/customer-reviews": {
+      "get": {
+        "tags": [
+          "Reviews"
+        ],
+        "summary": "Get reviews list",
+        "operationId": "getReviews",
+        "description": "Get reviews list",
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully found reviews!",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "status",
+                    "message",
+                    "data"
+                  ],
+                  "properties": {
+                    "status": {
+                      "type": "integer",
+                      "example": 200
+                    },
+                    "message": {
+                      "type": "string",
+                      "example": "Successfully found reviews!"
+                    },
+                    "data": {
+                      "type": "object",
+                      "required": [
+                        "_id",
+                        "name",
+                        "testimonial"
+                      ],
+                      "properties": {
+                        "_id": {
+                          "type": "string",
+                          "example": "682c7ca46538af33c9132598"
+                        },
+                        "name": {
+                          "type": "string",
+                          "example": "Sergey Rybachok"
+                        },
+                        "testimonial": {
+                          "type": "string",
+                          "example": "I had a great experience"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/400"
+          },
+          "404": {
+            "$ref": "#/components/responses/404"
+          },
+          "500": {
+            "$ref": "#/components/responses/500"
+          }
+        }
+      }
     }
   },
   "components": {
