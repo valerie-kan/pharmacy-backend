@@ -961,7 +961,7 @@
           }
         },
         "responses": {
-          "204": {
+          "201": {
             "description": "Order was successfully placed"
           },
           "400": {
