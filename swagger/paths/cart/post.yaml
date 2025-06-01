@@ -15,9 +15,8 @@ requestBody:
           - items
         properties:
           items:
-            type: array
-            items:
-              $ref: ../../components/schemas/cart/postItems.yaml
+            type: object
+            $ref: ../../components/schemas/cart/postItems.yaml
 responses:
   '201':
     description: Product was successfully added

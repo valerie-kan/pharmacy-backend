@@ -6,31 +6,27 @@ export const getCart = (userId) => CartCollection.findOne({ userId });
 
 export const addCart = (payload) => CartCollection.create(payload);
 
-export const upsertCart = async ({ cartId, _id, userId }, payload) => {
+export const upsertCart = async ({ cartId, productId, userId }, payload) => {
   const cart = await CartCollection.findOne({ _id: cartId, userId });
 
   if (!cart) return null;
 
   const existingItemIndex = cart.items.findIndex(
-    (item) => item.productId.toString() === _id,
+    (item) => item.productId.toString() === productId,
   );
-
-  let isNew = false;
 
   if (existingItemIndex >= 0) {
     cart.items[existingItemIndex].quantity += payload.quantity;
   } else {
     cart.items.push({
-      productId: new ObjectId(String(_id)),
+      productId: new ObjectId(String(productId)),
       quantity: payload.quantity,
     });
-    isNew = true;
   }
 
   const updatedCart = await cart.save();
 
   return {
-    isNew,
     data: updatedCart,
   };
 };

@@ -1,9 +1,9 @@
 type: object
 required:
-  - _id
+  - productId
   - quantity
 properties:
-  _id:
+  productId:
     description: 'Product id'
     type: string
     example: 65e4decdd286b30065d54af9

@@ -761,10 +761,8 @@
                 ],
                 "properties": {
                   "items": {
-                    "type": "array",
-                    "items": {
-                      "$ref": "#/components/schemas/postItems"
-                    }
+                    "type": "object",
+                    "$ref": "#/components/schemas/postItems"
                   }
                 }
               }
@@ -816,7 +814,7 @@
         }
       }
     },
-    "/cart/update/{cartId}/{id}": {
+    "/cart/update/{cartId}/{productId}": {
       "put": {
         "tags": [
           "Cart"
@@ -841,7 +839,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "productId",
             "required": true,
             "schema": {
               "type": "string",
@@ -1225,11 +1223,11 @@
       "postItems": {
         "type": "object",
         "required": [
-          "_id",
+          "productId",
           "quantity"
         ],
         "properties": {
-          "_id": {
+          "productId": {
             "description": "Product id",
             "type": "string",
             "example": "65e4decdd286b30065d54af9"
