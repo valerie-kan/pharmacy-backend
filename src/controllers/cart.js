@@ -37,21 +37,6 @@ export const upsertCartController = async (req, res) => {
   });
 };
 
-// export const updateCartController = async (req, res) => {
-//   const { cartId, id: _id } = req.params;
-//   const { _id: userId } = req.user;
-//   const data = await updateCart({ cartId, _id, userId }, req.body);
-
-//   if (!data) {
-//     throw createError(404, `Product with id=${_id} not found`);
-//   }
-
-//   res.json({
-//     status: 200,
-//     message: 'Successfully updated',
-//   });
-// };
-
 export const deleteItemController = async (req, res) => {
   const { cartId, id: _id } = req.params;
   const { _id: userId } = req.user;

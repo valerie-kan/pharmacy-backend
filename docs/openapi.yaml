@@ -56,7 +56,7 @@ paths:
       $ref: ../swagger/paths/cart/get.yaml
     post:
       $ref: ../swagger/paths/cart/post.yaml
-  /cart/update:
+  /cart/update/{cartId}/{id}:
     put:
       $ref: ../swagger/paths/cart/put.yaml
   /cart/{cartId}/{id}:

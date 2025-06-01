@@ -5,6 +5,19 @@ operationId: updateProducts
 description: 'Update products'
 security:
   - bearerAuth: []
+parameters:
+  - in: path
+    name: cartId
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
+  - in: path
+    name: id
+    required: true
+    schema:
+      type: string
+      example: '65ca67e7ae7f10c88b598384'
 requestBody:
   required: true
   content:

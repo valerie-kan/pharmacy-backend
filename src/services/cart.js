@@ -6,12 +6,6 @@ export const getCart = (userId) => CartCollection.findOne({ userId });
 
 export const addCart = (payload) => CartCollection.create(payload);
 
-// export const updateCart = (filter, payload) =>
-//   CartCollection.findOneAndUpdate(
-//     { _id: filter.cartId, 'items._id': filter._id, userId: filter.userId },
-//     { $set: { 'items.$.quantity': payload.quantity } },
-//   );
-
 export const upsertCart = async ({ cartId, _id, userId }, payload) => {
   const cart = await CartCollection.findOne({ _id: cartId, userId });
 
