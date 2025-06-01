@@ -1,0 +1,8 @@
+type: object
+required:
+  - quantity
+properties:
+  quantity:
+    description: 'Product quantity'
+    type: number
+    example: 3

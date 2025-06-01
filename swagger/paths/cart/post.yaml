@@ -1,0 +1,43 @@
+tags:
+  - Cart
+summary: Add products to cart
+operationId: addProducts
+description: 'Add products to cart'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../components/schemas/cart/post.yaml
+responses:
+  '201':
+    description: Product was successfully added
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - status
+            - message
+            - data
+          properties:
+            status:
+              type: integer
+              example: 201
+            message:
+              type: string
+              example: Product was successfully added
+            data:
+              type: object
+              $ref: ../../components/schemas/cart/get.yaml
+
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'

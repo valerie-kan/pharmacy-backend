@@ -1,0 +1,18 @@
+type: object
+required:
+  - items
+properties:
+  items:
+    type: object
+    required:
+      - productId
+      - quantity
+    properties:
+      productId:
+        description: 'Product id'
+        type: string
+        example: 65e4decdd286b30065d54af9
+      quantity:
+        description: 'Product quantity'
+        type: number
+        example: 3

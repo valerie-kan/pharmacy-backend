@@ -1,0 +1,44 @@
+type: object
+required:
+  - _id
+  - userId
+  - items
+  - createdAt
+  - updatedAt
+properties:
+  _id:
+    description: 'Cart id'
+    type: string
+    example: 65e4decdd286b30065d54af9
+  userId:
+    description: 'User id'
+    type: string
+    example: 65e4decdd286b30065d54af9
+  items:
+    description: 'Products chosen by user'
+    type: object
+    required:
+      - productId
+      - quantity
+      - _id
+    properties:
+      productId:
+        description: 'Product id'
+        type: string
+        example: 65e4decdd286b30065d54af9
+      quantity:
+        description: 'Product quantity'
+        type: number
+        example: 3
+      _id:
+        description: 'Item id'
+        type: string
+        example: 65e4decdd286b30065d54af9
+  createdAt:
+    description: 'When the cart was created'
+    type: string
+    example: 2025-05-30T10:23:10.962+00:00
+  updatedAt:
+    description: 'When the cart was updated'
+    type: string
+    example: 2025-05-30T10:23:10.962+00:00

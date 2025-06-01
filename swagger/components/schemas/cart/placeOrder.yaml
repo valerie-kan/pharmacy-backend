@@ -1,0 +1,27 @@
+type: object
+required:
+  - name
+  - address
+  - products
+  - price
+properties:
+  name:
+    description: 'User name'
+    type: string
+    example: 'Taras Shevchenko'
+  address:
+    description: 'Address of delivery'
+    type: string
+    example: 'Khreshchatyk, Bldg. 51, Apt. 137'
+  products:
+    description: 'Product quantity'
+    type: string
+    example: 12
+  price:
+    description: 'Total price'
+    type: string
+    example: 890.66
+  status:
+    description: 'Order status'
+    type: string
+    example: Pending

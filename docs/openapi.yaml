@@ -51,6 +51,20 @@ paths:
   /stores/nearest:
     get:
       $ref: ../swagger/paths/stores/getNearest.yaml
+  /cart:
+    get:
+      $ref: ../swagger/paths/cart/get.yaml
+    post:
+      $ref: ../swagger/paths/cart/post.yaml
+  /cart/update:
+    put:
+      $ref: ../swagger/paths/cart/put.yaml
+  /cart/{cartId}/{id}:
+    delete:
+      $ref: ../swagger/paths/cart/{cartId}/{id}/delete.yaml
+  /cart/checkout:
+    post:
+      $ref: ../swagger/paths/cart/placeOrder.yaml
 components:
   securitySchemes:
     bearerAuth:

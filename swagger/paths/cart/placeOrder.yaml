@@ -1,0 +1,24 @@
+tags:
+  - Cart
+summary: Place an order
+operationId: placeOrder
+description: 'Place an order'
+security:
+  - bearerAuth: []
+requestBody:
+  required: true
+  content:
+    application/json:
+      schema:
+        $ref: ../../components/schemas/cart/placeOrder.yaml
+responses:
+  '204':
+    description: Order was successfully placed
+  '400':
+    $ref: '../../components/responses/400.yaml'
+  '401':
+    $ref: '../../components/responses/401.yaml'
+  '404':
+    $ref: '../../components/responses/404.yaml'
+  '500':
+    $ref: '../../components/responses/500.yaml'
