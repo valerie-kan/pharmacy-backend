@@ -755,7 +755,18 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/post"
+                "type": "object",
+                "required": [
+                  "items"
+                ],
+                "properties": {
+                  "items": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "#/components/schemas/postItems"
+                    }
+                  }
+                }
               }
             }
           }
@@ -1211,30 +1222,22 @@
           }
         }
       },
-      "post": {
+      "postItems": {
         "type": "object",
         "required": [
-          "items"
+          "_id",
+          "quantity"
         ],
         "properties": {
-          "items": {
-            "type": "object",
-            "required": [
-              "productId",
-              "quantity"
-            ],
-            "properties": {
-              "productId": {
-                "description": "Product id",
-                "type": "string",
-                "example": "65e4decdd286b30065d54af9"
-              },
-              "quantity": {
-                "description": "Product quantity",
-                "type": "number",
-                "example": 3
-              }
-            }
+          "_id": {
+            "description": "Product id",
+            "type": "string",
+            "example": "65e4decdd286b30065d54af9"
+          },
+          "quantity": {
+            "description": "Product quantity",
+            "type": "number",
+            "example": 3
           }
         }
       },

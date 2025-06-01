@@ -10,7 +10,14 @@ requestBody:
   content:
     application/json:
       schema:
-        $ref: ../../components/schemas/cart/post.yaml
+        type: object
+        required:
+          - items
+        properties:
+          items:
+            type: array
+            items:
+              $ref: ../../components/schemas/cart/postItems.yaml
 responses:
   '201':
     description: Product was successfully added
