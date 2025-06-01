@@ -28,7 +28,8 @@ cartRouter.put(
   '/update/:cartId/:id',
   isValidId,
   validateBody(cartUpdateSchema),
-  ctrlWrapper(controllers.updateCartController),
+  // ctrlWrapper(controllers.updateCartController),
+  ctrlWrapper(controllers.upsertCartController),
 );
 
 cartRouter.delete(

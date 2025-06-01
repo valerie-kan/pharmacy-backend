@@ -1,6 +1,6 @@
 import createError from 'http-errors';
 
-import { addCart, deleteItem, getCart, updateCart } from '../services/cart.js';
+import { addCart, deleteItem, getCart, upsertCart } from '../services/cart.js';
 
 export const getCartController = async (req, res) => {
   const { _id: userId } = req.user;
@@ -23,20 +23,34 @@ export const addCartController = async (req, res) => {
   });
 };
 
-export const updateCartController = async (req, res) => {
+export const upsertCartController = async (req, res) => {
   const { cartId, id: _id } = req.params;
   const { _id: userId } = req.user;
-  const data = await updateCart({ cartId, _id, userId }, req.body);
+  const { isNew, data } = await upsertCart({ cartId, _id, userId }, req.body);
 
-  if (!data) {
-    throw createError(404, `Product with id=${_id} not found`);
-  }
+  const status = isNew ? 201 : 200;
 
-  res.json({
-    status: 200,
-    message: 'Successfully updated',
+  res.status(status).json({
+    status,
+    message: 'Successfully upserted cart item',
+    data,
   });
 };
+
+// export const updateCartController = async (req, res) => {
+//   const { cartId, id: _id } = req.params;
+//   const { _id: userId } = req.user;
+//   const data = await updateCart({ cartId, _id, userId }, req.body);
+
+//   if (!data) {
+//     throw createError(404, `Product with id=${_id} not found`);
+//   }
+
+//   res.json({
+//     status: 200,
+//     message: 'Successfully updated',
+//   });
+// };
 
 export const deleteItemController = async (req, res) => {
   const { cartId, id: _id } = req.params;
