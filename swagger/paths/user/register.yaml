@@ -20,7 +20,6 @@ responses:
           required:
             - status
             - message
-            - data
           properties:
             status:
               type: integer
@@ -28,12 +27,6 @@ responses:
             message:
               type: string
               example: Successfully registered
-            data:
-              type: object
-              properties:
-                username:
-                  type: string
-                  example: 'John Dou'
   '400':
     $ref: '../../components/responses/400.yaml'
   '500':

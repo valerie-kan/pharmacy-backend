@@ -71,8 +71,7 @@
                   "type": "object",
                   "required": [
                     "status",
-                    "message",
-                    "data"
+                    "message"
                   ],
                   "properties": {
                     "status": {
@@ -82,15 +81,6 @@
                     "message": {
                       "type": "string",
                       "example": "Successfully registered"
-                    },
-                    "data": {
-                      "type": "object",
-                      "properties": {
-                        "username": {
-                          "type": "string",
-                          "example": "John Dou"
-                        }
-                      }
                     }
                   }
                 }
