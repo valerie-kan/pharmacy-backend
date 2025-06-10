@@ -18,7 +18,15 @@ import cartRouter from './routers/cart.js';
 export const startServer = () => {
   const app = express();
 
-  app.use(cors());
+  app.use(
+    cors({
+      origin: (origin, callback) => {
+        // Дозволяємо запити без origin (наприклад з Postman) або з будь-якого сайту
+        callback(null, true);
+      },
+      credentials: true, // 👈 Обов’язково для cookie
+    }),
+  );
   app.use(express.json());
   app.use(cookieParser());
   // app.use(logger);
