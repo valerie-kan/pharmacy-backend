@@ -1,32 +1,14 @@
 import * as authServices from '../services/auth.js';
 
-// const setupSession = (res, session) => {
-//   res.cookie('refreshToken', session.refreshToken, {
-//     httpOnly: true,
-//     expires: session.refreshTokenValidUntil,
-//   });
-
-//   res.cookie('sessionId', session.id, {
-//     httpOnly: true,
-//     expires: session.refreshTokenValidUntil,
-//   });
-// };
-
-const setupSession = (req, res, session) => {
-  const isSecure = req.secure || req.headers['x-forwarded-proto'] === 'https';
-
+const setupSession = (res, session) => {
   res.cookie('refreshToken', session.refreshToken, {
     httpOnly: true,
     expires: session.refreshTokenValidUntil,
-    sameSite: isSecure ? 'None' : 'Lax', // HTTPS: None, HTTP: Lax
-    secure: isSecure, // HTTPS: true, HTTP: false
   });
 
   res.cookie('sessionId', session.id, {
     httpOnly: true,
     expires: session.refreshTokenValidUntil,
-    sameSite: isSecure ? 'None' : 'Lax',
-    secure: isSecure,
   });
 };
 
