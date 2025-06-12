@@ -983,7 +983,7 @@
         },
         "responses": {
           "201": {
-            "description": "Order was successfully placed"
+            "description": "Order successfully placed and cart deleted"
           },
           "400": {
             "$ref": "#/components/responses/400"

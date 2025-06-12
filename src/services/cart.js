@@ -70,3 +70,6 @@ export const deleteItem = ({ cartId, productId, userId }) =>
     { _id: cartId, userId },
     { $pull: { items: { productId } } },
   );
+
+export const deleteCart = (userId) =>
+  CartCollection.findOneAndDelete({ userId });
