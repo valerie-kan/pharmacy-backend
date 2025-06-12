@@ -26,11 +26,12 @@ export const addCartController = async (req, res) => {
 export const upsertCartController = async (req, res) => {
   const { cartId, id: productId } = req.params;
   const { _id: userId } = req.user;
-  await upsertCart({ cartId, productId, userId }, req.body);
+  const result = await upsertCart({ cartId, productId, userId }, req.body);
 
   res.status(200).json({
     status: 200,
-    message: 'Successfully upserted cart item',
+    message: 'Successfully added product',
+    data: result.data,
   });
 };
 

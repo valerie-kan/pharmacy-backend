@@ -1,7 +1,8 @@
-import { ObjectId } from 'mongodb';
+// import { ObjectId } from 'mongodb';
 import createHttpError from 'http-errors';
 
 import CartCollection from '../db/models/Cart.js';
+import ProductCollection from '../db/models/Product.js';
 
 export const getCart = (userId) => CartCollection.findOne({ userId });
 
@@ -13,6 +14,10 @@ export const upsertCart = async ({ cartId, productId, userId }, payload) => {
   if (!cart) {
     throw createHttpError(404, 'Cart not found');
   }
+  const product = await ProductCollection.findById(productId);
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
 
   const existingItemIndex = cart.items.findIndex(
     (item) => item.productId.toString() === productId,
@@ -22,8 +27,12 @@ export const upsertCart = async ({ cartId, productId, userId }, payload) => {
     cart.items[existingItemIndex].quantity += payload.quantity;
   } else {
     cart.items.push({
-      productId: new ObjectId(String(productId)),
+      productId: product._id,
       quantity: payload.quantity,
+      name: product.name,
+      price: product.price,
+      photo: product.photo,
+      suppliers: product.suppliers,
     });
   }
 

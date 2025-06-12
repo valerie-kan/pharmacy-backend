@@ -2,7 +2,7 @@ tags:
   - Cart
 summary: Add products to cart
 operationId: addProducts
-description: 'Add products to cart'
+description: Add a single product to the user's cart.
 security:
   - bearerAuth: []
 requestBody:
@@ -12,11 +12,18 @@ requestBody:
       schema:
         type: object
         required:
-          - items
+          - productId
+          - quantity
         properties:
-          items:
-            type: object
-            $ref: ../../components/schemas/cart/postItems.yaml
+          productId:
+            type: string
+            description: ID of the product to add
+            example: 65e4decdd286b30065d54af9
+          quantity:
+            type: integer
+            minimum: 1
+            description: Quantity of the product
+            example: 3
 responses:
   '201':
     description: Product was successfully added
