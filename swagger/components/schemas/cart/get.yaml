@@ -20,7 +20,10 @@ properties:
     required:
       - productId
       - quantity
-      - _id
+      - photo
+      - name
+      - suppliers
+      - price
     properties:
       productId:
         description: 'Product id'
@@ -30,10 +33,22 @@ properties:
         description: 'Product quantity'
         type: number
         example: 3
-      _id:
-        description: 'Item id'
+      photo:
+        description: 'Product img'
         type: string
-        example: 65e4decdd286b30065d54af9
+        example: 'https://example.com/photo.jpg'
+      name:
+        description: 'Product name'
+        type: string
+        example: 'Aspirin'
+      suppliers:
+        description: 'Product supplier'
+        type: string
+        example: 'Square'
+      price:
+        description: 'Product price'
+        type: string
+        example: '86.99'
   createdAt:
     description: 'When the cart was created'
     type: string

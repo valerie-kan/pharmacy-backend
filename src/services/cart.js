@@ -6,7 +6,28 @@ import ProductCollection from '../db/models/Product.js';
 
 export const getCart = (userId) => CartCollection.findOne({ userId });
 
-export const addCart = (payload) => CartCollection.create(payload);
+export const addCart = async ({ productId, quantity, userId }) => {
+  const product = await ProductCollection.findById(productId);
+  if (!product) {
+    throw createHttpError(404, 'Product not found');
+  }
+
+  const cart = await CartCollection.create({
+    userId,
+    items: [
+      {
+        productId,
+        quantity,
+        photo: product.photo,
+        name: product.name,
+        suppliers: product.suppliers,
+        price: product.price,
+      },
+    ],
+  });
+
+  return cart;
+};
 
 export const upsertCart = async ({ cartId, productId, userId }, payload) => {
   const cart = await CartCollection.findOne({ _id: cartId, userId });
@@ -14,6 +35,7 @@ export const upsertCart = async ({ cartId, productId, userId }, payload) => {
   if (!cart) {
     throw createHttpError(404, 'Cart not found');
   }
+
   const product = await ProductCollection.findById(productId);
   if (!product) {
     throw createHttpError(404, 'Product not found');
@@ -43,8 +65,8 @@ export const upsertCart = async ({ cartId, productId, userId }, payload) => {
   };
 };
 
-export const deleteItem = (filter) =>
+export const deleteItem = ({ cartId, productId, userId }) =>
   CartCollection.findOneAndUpdate(
-    { _id: filter.cartId, userId: filter.userId },
-    { $pull: { items: { _id: filter._id } } },
+    { _id: cartId, userId },
+    { $pull: { items: { productId } } },
   );

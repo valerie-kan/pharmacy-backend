@@ -58,10 +58,10 @@ paths:
       $ref: ../swagger/paths/cart/post.yaml
   /cart/update/{cartId}/{productId}:
     put:
-      $ref: ../swagger/paths/cart/put.yaml
-  /cart/{cartId}/{id}:
+      $ref: ../swagger/paths/cart/{cartId}/{productId}/put.yaml
+  /cart/{cartId}/{productId}:
     delete:
-      $ref: ../swagger/paths/cart/{cartId}/{id}/delete.yaml
+      $ref: ../swagger/paths/cart/{cartId}/{productId}/delete.yaml
   /cart/checkout:
     post:
       $ref: ../swagger/paths/cart/placeOrder.yaml

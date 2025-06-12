@@ -24,7 +24,7 @@ export const addCartController = async (req, res) => {
 };
 
 export const upsertCartController = async (req, res) => {
-  const { cartId, id: productId } = req.params;
+  const { cartId, productId } = req.params;
   const { _id: userId } = req.user;
   const result = await upsertCart({ cartId, productId, userId }, req.body);
 
@@ -36,12 +36,12 @@ export const upsertCartController = async (req, res) => {
 };
 
 export const deleteItemController = async (req, res) => {
-  const { cartId, id: _id } = req.params;
+  const { cartId, productId } = req.params;
   const { _id: userId } = req.user;
-  const data = await deleteItem({ cartId, _id, userId });
+  const data = await deleteItem({ cartId, productId, userId });
 
   if (!data) {
-    throw createError(404, `Product with id=${_id} not found`);
+    throw createError(404, `Product with id=${productId} not found`);
   }
 
   res.status(204).send();

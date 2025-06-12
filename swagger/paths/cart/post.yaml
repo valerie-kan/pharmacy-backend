@@ -1,6 +1,6 @@
 tags:
   - Cart
-summary: Add products to cart
+summary: Add first product to cart (create cart)
 operationId: addProducts
 description: Add a single product to the user's cart.
 security:
@@ -17,7 +17,7 @@ requestBody:
         properties:
           productId:
             type: string
-            description: ID of the product to add
+            description: Product id
             example: 65e4decdd286b30065d54af9
           quantity:
             type: integer

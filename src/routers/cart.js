@@ -25,14 +25,14 @@ cartRouter.post(
 );
 
 cartRouter.put(
-  '/update/:cartId/:id',
+  '/update/:cartId/:productId',
   isValidId,
   validateBody(cartUpdateSchema),
   ctrlWrapper(controllers.upsertCartController),
 );
 
 cartRouter.delete(
-  '/:cartId/:id',
+  '/:cartId/:productId',
   isValidId,
   ctrlWrapper(controllers.deleteItemController),
 );

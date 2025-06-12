@@ -742,7 +742,7 @@
         "tags": [
           "Cart"
         ],
-        "summary": "Add products to cart",
+        "summary": "Add first product to cart (create cart)",
         "operationId": "addProducts",
         "description": "Add a single product to the user's cart.",
         "security": [
@@ -763,7 +763,7 @@
                 "properties": {
                   "productId": {
                     "type": "string",
-                    "description": "ID of the product to add",
+                    "description": "Product id",
                     "example": "65e4decdd286b30065d54af9"
                   },
                   "quantity": {
@@ -874,7 +874,8 @@
                   "type": "object",
                   "required": [
                     "status",
-                    "message"
+                    "message",
+                    "data"
                   ],
                   "properties": {
                     "status": {
@@ -884,6 +885,9 @@
                     "message": {
                       "type": "string",
                       "example": "Cart was successfully updated"
+                    },
+                    "data": {
+                      "$ref": "#/components/schemas/get"
                     }
                   }
                 }
@@ -905,7 +909,7 @@
         }
       }
     },
-    "/cart/{cartId}/{id}": {
+    "/cart/{cartId}/{productId}": {
       "delete": {
         "tags": [
           "Cart"
@@ -930,7 +934,7 @@
           },
           {
             "in": "path",
-            "name": "id",
+            "name": "productId",
             "required": true,
             "schema": {
               "type": "string",
@@ -1196,7 +1200,10 @@
             "required": [
               "productId",
               "quantity",
-              "_id"
+              "photo",
+              "name",
+              "suppliers",
+              "price"
             ],
             "properties": {
               "productId": {
@@ -1209,10 +1216,25 @@
                 "type": "number",
                 "example": 3
               },
-              "_id": {
-                "description": "Item id",
+              "photo": {
+                "description": "Product img",
                 "type": "string",
-                "example": "65e4decdd286b30065d54af9"
+                "example": "https://example.com/photo.jpg"
+              },
+              "name": {
+                "description": "Product name",
+                "type": "string",
+                "example": "Aspirin"
+              },
+              "suppliers": {
+                "description": "Product supplier",
+                "type": "string",
+                "example": "Square"
+              },
+              "price": {
+                "description": "Product price",
+                "type": "string",
+                "example": "86.99"
               }
             }
           },
